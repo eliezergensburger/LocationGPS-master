@@ -106,9 +106,10 @@ private  Button distanceButton;
 
             if (addresses.size() > 0) {
                 String cityName = addresses.get(0).getAddressLine(0);
-                String stateName = addresses.get(0).getAddressLine(1);
-                String countryName = addresses.get(0).getAddressLine(2);
-                return stateName + "\n" + cityName + "\n" + countryName;
+              //  String stateName = addresses.get(0).getAddressLine(1);
+              //  String countryName = addresses.get(0).getAddressLine(2);
+              //  return stateName + "\n" + cityName + "\n" + countryName;
+                return cityName;
             }
 
             return "no place: \n ("+location.getLongitude()+" , "+location.getLatitude()+")";
