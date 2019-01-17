@@ -102,9 +102,7 @@ public class DistanceActivity extends Activity implements View.OnClickListener {
         statusTextView.setText(""+distance/1000+" km");
         else
         {
-            statusTextView.setText(""+distance
-
-                    +" meter");
+            statusTextView.setText("" + distance + " meter");
         }
 
     }

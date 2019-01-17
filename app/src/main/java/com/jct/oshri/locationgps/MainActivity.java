@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView locationTextView;
     private Button getLocationButton;
     private Button stopUpdateButton;
-private  Button distanceButton;
+    private Button distanceButton;
 
     // Acquire a reference to the system Location Manager
     LocationManager locationManager;
@@ -40,7 +40,6 @@ private  Button distanceButton;
 
     private void findViews() {
         locationTextView = (TextView) findViewById(R.id.locationTextView);
-
         getLocationButton = (Button) findViewById(R.id.getLocationButton);
         getLocationButton.setOnClickListener(this);
 
@@ -49,7 +48,6 @@ private  Button distanceButton;
 
         distanceButton = (Button) findViewById(R.id.distanceButton);
         distanceButton.setOnClickListener(this);
-
 
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -94,9 +92,6 @@ private  Button distanceButton;
     }
 
 
-
-
-
     public String getPlace(Location location) {
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -105,23 +100,21 @@ private  Button distanceButton;
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
             if (addresses.size() > 0) {
-                String cityName = addresses.get(0).getAddressLine(0);
-              //  String stateName = addresses.get(0).getAddressLine(1);
-              //  String countryName = addresses.get(0).getAddressLine(2);
-              //  return stateName + "\n" + cityName + "\n" + countryName;
-                return cityName;
+                String addressLine = addresses.get(0).getAddressLine(0);
+                //  String stateName = addresses.get(0).getAddressLine(1);
+                //  String countryName = addresses.get(0).getAddressLine(2);
+                //  return stateName + "\n" + cityName + "\n" + countryName;
+                return addressLine;
             }
 
-            return "no place: \n ("+location.getLongitude()+" , "+location.getLatitude()+")";
+            return "no place: \n (" + location.getLongitude() + " , " + location.getLatitude() + ")";
+        } catch (
+                IOException e) {
+            e.printStackTrace();
         }
-     catch(
-    IOException e)
-
-    {
-        e.printStackTrace();
-    }
         return "IOException ...";
-}
+    }
+
     @SuppressLint("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -148,12 +141,12 @@ private  Button distanceButton;
         if (v == stopUpdateButton) {
             // Remove the listener you previously added
             locationManager.removeUpdates(locationListener);
+
             stopUpdateButton.setEnabled(false);
             getLocationButton.setEnabled(true);
         }
-        if(v==distanceButton)
-        {
-            startActivity(new Intent(this,DistanceActivity.class));
+        if (v == distanceButton) {
+            startActivity(new Intent(this, DistanceActivity.class));
         }
     }
 
